@@ -22,14 +22,12 @@ class FabTabs extends StatefulWidget {
 class _FabTabsState extends State<FabTabs> {
   int currentIndex = 0;
 
-  // screens lists
-
-  // final List pages = [
-  //   const HomePage(),
-  //   const Page2(),
-  //   const Page3(),
-  //   const Page4(),
-  // ];
+  final List pages = [
+    HomePage(),
+    const Page2(),
+    const Page3(),
+    const Page4(),
+  ];
 
   // For Storing per-page State for Navigating One Page To Another
 
@@ -37,13 +35,7 @@ class _FabTabsState extends State<FabTabs> {
 
   @override
   Widget build(BuildContext context) {
-    Widget currentScreen = currentIndex == 0
-        ? const HomePage()
-        : currentIndex == 1
-            ? const Page2()
-            : currentIndex == 2
-                ? const Page3()
-                : const Page4();
+    Widget currentScreen = pages[currentIndex];
 
     return Scaffold(
       body: PageStorage(
@@ -81,7 +73,7 @@ class _FabTabsState extends State<FabTabs> {
                   MaterialButton(
                     onPressed: () {
                       setState(() {
-                        currentScreen = const HomePage();
+                        currentScreen = HomePage();
                         currentIndex = 0;
                       });
                     },
@@ -179,7 +171,7 @@ class _BottomIconsState extends State<BottomIcons> {
     return MaterialButton(
       onPressed: () {
         setState(() {
-          widget.currentScreen = const HomePage();
+          widget.currentScreen = HomePage();
           widget.currentIndex = 0;
         });
       },
