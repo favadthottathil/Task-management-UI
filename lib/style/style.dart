@@ -36,9 +36,20 @@ class AppStyle {
     fontWeight: FontWeight.w500,
     color: Colors.black54,
   );
+  static TextStyle popinsGreyColor12Normal = GoogleFonts.poppins(
+    fontSize: 10.sp,
+    fontWeight: FontWeight.normal,
+    color: Colors.black54,
+  );
 
-  static TextStyle popinsBlackColor16Bold = GoogleFonts.poppins(
-    fontSize: 16.sp,
+  static TextStyle popinsBlackColor13Bold = GoogleFonts.poppins(
+    fontSize: 13.sp,
+    fontWeight: FontWeight.bold,
+    color: kBlack,
+  );
+
+  static TextStyle popinsBlackColor10Bold = GoogleFonts.poppins(
+    fontSize: 10.sp,
     fontWeight: FontWeight.bold,
     color: kBlack,
   );

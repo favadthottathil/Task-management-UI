@@ -1,38 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:github_repo_listing_app/pages/widgets/dropdownwidget.dart';
 import 'package:github_repo_listing_app/style/style.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
-
-  final List numbers = List.generate(4, (index) => "Item $index");
-
-  List gridviewColors = [
-    AppStyle.lightOrange,
-    AppStyle.lightBlue,
-    AppStyle.lightGreen,
-    AppStyle.darkOrage
-  ];
-
-  List gridIcons = [
-    CupertinoIcons.timer,
-    CupertinoIcons.shuffle,
-    CupertinoIcons.doc_checkmark,
-    Ionicons.document_lock,
-  ];
-
-  List gridNames = [
-    'In Progress',
-    'Ongoing',
-    'Completed',
-    'Cancel'
-  ];
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List gridviewColors = [
+      AppStyle.lightOrange,
+      AppStyle.lightBlue,
+      AppStyle.lightGreen,
+      AppStyle.darkOrage
+    ];
+
+    List gridIcons = [
+      CupertinoIcons.timer,
+      CupertinoIcons.shuffle,
+      CupertinoIcons.doc_checkmark,
+      Ionicons.document_lock,
+    ];
+
+    List gridNames = [
+      'In Progress',
+      'Ongoing',
+      'Completed',
+      'Cancel'
+    ];
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -63,10 +61,10 @@ class HomePage extends StatelessWidget {
                 style: AppStyle.popinsGreyColor16Normal,
               ),
             ),
-            SizedBox(height: 2.h),
+            SizedBox(height: 1.h),
             Padding(
               padding: EdgeInsets.only(left: 2.h),
-              child: Text('Alex Macroni', style: AppStyle.popinsBlackColor16Bold),
+              child: Text('Alex Macroni', style: AppStyle.popinsBlackColor13Bold),
             ),
             SizedBox(height: 1.h),
             Flexible(
@@ -74,7 +72,7 @@ class HomePage extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: 4,
-                padding: const EdgeInsets.all(25),
+                padding: EdgeInsets.only(left: 2.h, right: 2.h),
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 200,
                   childAspectRatio: 3 / 2,
@@ -83,8 +81,6 @@ class HomePage extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) {
                   return Container(
-                    height: 100,
-                    width: 60,
                     decoration: BoxDecoration(
                       color: gridviewColors[index],
                       borderRadius: BorderRadius.circular(10),
@@ -105,7 +101,79 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 1.h),
-            Text('Daily Task', style: AppStyle.popinsBlackColor16Bold)
+            Padding(
+              padding: EdgeInsets.only(left: 2.h, right: 2.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Daily Task',
+                    style: AppStyle.popinsBlackColor13Bold,
+                  ),
+                  const CustomDropDown(),
+                ],
+              ),
+            ),
+            Flexible(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading: const Icon(CupertinoIcons.checkmark_circle),
+                    title: Text(
+                      'App Animation',
+                      style: AppStyle.popinsBlackColor10Bold,
+                    ),
+                    subtitle: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: LinearProgressIndicator(
+                        value: 0.8,
+                        minHeight: 1.h,
+                        color: Colors.greenAccent,
+                        backgroundColor: Colors.grey,
+                      ),
+                    ),
+                    trailing: Stack(
+                      children: [
+                        Wrap(
+                          children: [
+                            Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.amber,
+                              ),
+                            ),
+                            Positioned(
+                              right: 80,
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppStyle.kBlack,
+                              ),
+                            ),
+                            SizedBox(width: 1.w),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            )
           ],
         ),
       ),
